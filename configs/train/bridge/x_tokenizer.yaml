@@ -1,0 +1,9 @@
+extends: base.yaml
+tokenizer:
+  name: x-tokenizer
+  artifact: x-square-robot/X-Tokenizer
+  revision: bb5a47a36079d085d55c303fdf73223bd3dedd1d
+  normalizer_path: ./configs/stats/bridge/x_tokenizer_normalizer.json
+  robot_type: WidowX
+train:
+  output_dir: outputs/train/bridge/x_tokenizer

@@ -1,0 +1,12 @@
+name: single_joint6_abs_no_gripper
+input_dim: 6
+input: absolute
+source_hz: 15.0
+target_hz: 15.0
+interpolation: cubic
+token_order: time_major
+components:
+  arm:
+    space: joint
+    joint_dims: [0, 1, 2, 3, 4, 5]
+    joint_wrap: pi

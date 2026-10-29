@@ -1,0 +1,16 @@
+ActionCodec2
+Copyright 2026 The ActionCodec2 Authors
+
+Unless stated otherwise, the code in this repository is licensed under the
+Apache License, Version 2.0 (see LICENSE).
+
+The G0.5 model implementation in src/actioncodec2/vla/g05_hf/ is adapted
+from G0.5 and is licensed under the G0.5 Community License Agreement
+(Non-Commercial + Limited Patent License), provided in LICENSE-G0.5.
+G0.5 is Copyright (c) 2026 Galaxea. All rights reserved by Galaxea. "Galaxea"
+and related marks are trademarks of Galaxea or its affiliates.
+
+Policies trained with this repository are derived from the G0.5 base weights
+and are subject to LICENSE-G0.5. Datasets and released action tokenizers
+(ActionCodec, FAST, X-Tokenizer) are distributed by their authors under their
+own terms.

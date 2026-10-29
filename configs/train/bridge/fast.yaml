@@ -1,0 +1,11 @@
+extends: base.yaml
+tokenizer:
+  name: fast
+  processor: physical-intelligence/fast
+  revision: ec4d7aa71691cac0b8bed6942be45684db2110f4
+  action_stats: ./configs/stats/bridge/action_stats.json
+  # Decode without the grammar mask, as FAST is normally used: a stream that does
+  # not parse becomes a zero action.  Set true to mask illegal ids.
+  constrained_decoding: false
+train:
+  output_dir: outputs/train/bridge/fast

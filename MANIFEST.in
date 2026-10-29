@@ -1,0 +1,24 @@
+include LICENSE
+include LICENSE-G0.5
+include LICENSE_QWEN3_5.txt
+include NOTICE
+recursive-include configs *.yaml *.json *.md
+recursive-include docs *.md
+recursive-include scripts *.py
+include setup.py
+recursive-include src/actioncodec2/tokenizers/native *.cpp *.hpp
+recursive-include src/actioncodec2/core/backends/actioncodec2/native *.cpp *.hpp
+recursive-include src/actioncodec2/core/backends/actioncodec2/assets *.yaml
+prune .pi
+prune .claude
+prune .codex
+prune .agents
+prune .cursor
+prune .opencode
+prune .idea
+prune .vscode
+global-exclude AGENTS.md CLAUDE.md CODEX.md GEMINI.md SKILL.md .aider*
+include docs/SKILL.md
+global-exclude .env .env.* .DS_Store *.swp *.swo
+global-exclude */.pi/* */.claude/* */.codex/* */.agents/* */.cursor/* */.opencode/*
+global-exclude */.idea/* */.vscode/*

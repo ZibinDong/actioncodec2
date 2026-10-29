@@ -1,0 +1,13 @@
+extends: base.yaml
+tokenizer:
+  name: x-tokenizer
+  artifact: x-square-robot/X-Tokenizer
+  revision: bb5a47a36079d085d55c303fdf73223bd3dedd1d
+  normalizer_path: ./configs/stats/libero/x_tokenizer_normalizer.json
+  # Optional affine correction of decoded actions, fitted on tokenizer
+  # reconstructions only; remove it to evaluate the unmodified release.
+  calibration_path: ./configs/stats/libero/x_tokenizer_calibration.json
+  robot_type: Franka
+  condition_obs: true
+train:
+  output_dir: outputs/train/libero/x_tokenizer

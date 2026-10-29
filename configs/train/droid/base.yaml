@@ -1,0 +1,60 @@
+# G0.5 on DROID's native joint trajectory: seven joints plus gripper at 15 Hz.
+# Actions are derived as adjacent state deltas (action_offset: 1).
+model:
+  proprio_stats: ./configs/stats/droid/proprio_stats.json
+  proprio_mode: observed
+  embodiment: Droid_Franka
+  proprio_source_indices: [0, 1, 2, 3, 4, 5, 6, 7]
+  proprio_internal_indices: [10, 11, 12, 13, 14, 15, 16, 19]
+  proprio_quantile_indices: [7]
+  action_dim: 8
+  action_only_loss: true
+data:
+  roots:
+    - split0
+    - split1
+    - split2
+    - split3
+    - split4
+    - split5
+    - split6
+    - split7
+    - split8
+    - split9
+    - split10
+    - split11
+    - split12
+    - split13
+    - split14
+    - split15
+  action_keys: [observation.state.joint_position, observation.state.gripper_position]
+  state_keys: [observation.state.joint_position, observation.state.gripper_position]
+  action_offset: 1
+  horizon: 15
+  control_frequency_hz: 15
+  action_space: delta_joint
+  action_rotation_representation: euler_xyz
+  gripper_threshold: 0.2
+  gripper_open_is_high: false
+  video_keys: [observation.images.exterior_1_left, observation.images.wrist_left]
+  require_nonempty_task: false
+  lanes: 16
+  max_readers: 32
+  cached_episodes: 4
+  table_cache: 4
+  sample_order: random
+  token_cache: auto
+train:
+  output_dir: outputs/train/droid
+  steps: 50000
+  # Fixed so ``--steps`` can stop a run early on the same 50k LR schedule.
+  schedule_steps: 50000
+  batch_size: 2
+  gradient_accumulation: 4
+  learning_rate: 0.00005
+  warmup_steps: 250
+  save_every: 5000
+  num_workers: 4
+  dataloader_timeout_seconds: 180
+tracking:
+  backend: none

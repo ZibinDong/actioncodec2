@@ -1,0 +1,12 @@
+extends: base.yaml
+tokenizer:
+  name: x-tokenizer
+  artifact: x-square-robot/X-Tokenizer
+  revision: bb5a47a36079d085d55c303fdf73223bd3dedd1d
+  action_layout: direct
+  robot_type: Franka
+  normalizer:
+    low: [-0.0661633238, -0.0557859652, -0.0696641728, -0.0572056770, -0.0823523626, -0.0791488588, -0.0769436955, 0.0]
+    high: [0.0662442893, 0.0652041361, 0.0690458342, 0.0567845106, 0.0819745585, 0.0804257393, 0.0773761719, 1.0]
+train:
+  output_dir: outputs/train/droid/x_tokenizer

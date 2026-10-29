@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=77", "wheel", "pybind11>=2.12"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "actioncodec2"
+version = "0.1.0"
+authors = [{name = "ZibinDong", email = "zibindong@outlook.com"}]
+description = "Train and serve G0.5 vision-language-action policies with released action tokenizers"
+readme = "README.md"
+license = "Apache-2.0 AND LicenseRef-G0.5-Community-1.0"
+license-files = ["LICENSE", "LICENSE-G0.5", "LICENSE_QWEN3_5.txt", "NOTICE"]
+requires-python = ">=3.12"
+keywords = ["robotics", "vision-language-action", "action-tokenizer", "G0.5", "LIBERO"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "numpy>=1.24",
+  "pyyaml>=6",
+  "scipy>=1.11",
+  "safetensors>=0.4",
+  "huggingface-hub>=1.0",
+  "torch>=2.7",
+  # Qwen3.5 first ships in 5.2; its internal interfaces may change in 6.x.
+  "transformers>=5.2,<6",
+  # LeRobot owns the platform-specific video dependencies (torchvision/torchcodec).
+  "lerobot[dataset]>=0.6.1",
+  "pyarrow>=15",
+  "websockets>=14",
+]
+
+[project.optional-dependencies]
+# Fused CUDA kernels; everything runs without them, only slower.
+cuda = ["liger-kernel>=0.8", "flash-linear-attention>=0.4.2"]
+# ActionCodec's released implementation uses vector-quantize-pytorch.
+actioncodec = ["vector-quantize-pytorch>=1.31"]
+tracking = ["swanlab", "wandb"]
+dev = ["pytest>=8", "ruff>=0.6"]
+all = ["actioncodec2[cuda,actioncodec,dev]"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["actioncodec2*"]
+
+[tool.setuptools.package-data]
+"actioncodec2.core.backends.actioncodec2" = ["assets/presets/*.yaml", "assets/profiles/*.yaml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+# Model, released-artifact, and distributed checks run with `pytest -m slow`.
+addopts = "-m 'not slow' -p no:hydra_pytest"
+markers = ["slow: loads model/artifact runtimes or launches distributed workers"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = [".eval", "outputs"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B"]
+ignore = ["E501"]

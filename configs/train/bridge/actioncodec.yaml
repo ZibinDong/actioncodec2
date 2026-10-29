@@ -1,0 +1,9 @@
+extends: base.yaml
+tokenizer:
+  name: actioncodec
+  artifact: ZibinDong/ActionCodec-5e
+  revision: 86bb847edfc9a2a730fa388c32bf05221a8a5593
+  action_stats: ./configs/stats/bridge/action_stats.json
+  embodiment_id: 1
+train:
+  output_dir: outputs/train/bridge/actioncodec

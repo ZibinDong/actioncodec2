@@ -1,0 +1,18 @@
+name: dual_joint7_abs
+input_dim: 16
+input: absolute
+source_hz: 15.0
+target_hz: 15.0
+interpolation: cubic
+token_order: time_major
+components:
+  left_arm:
+    space: joint
+    joint_dims: [0, 1, 2, 3, 4, 5, 6]
+    joint_wrap: pi
+    gripper_dim: 7
+  right_arm:
+    space: joint
+    joint_dims: [8, 9, 10, 11, 12, 13, 14]
+    joint_wrap: pi
+    gripper_dim: 15

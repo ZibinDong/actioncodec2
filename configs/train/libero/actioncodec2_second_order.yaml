@@ -1,0 +1,16 @@
+extends: actioncodec2.yaml
+tokenizer:
+  variant: paper-o2-5mm-4k-2bin-1p2ms
+  variant_fingerprint: ecd9fc036f81b21be7ea80938a930182db9c3036fb399bd453cb360f8c359e7b
+  previous_action_resampling: constant_velocity
+  resampling_alignment: interval_end
+data:
+  previous_action_source: ground_truth
+  previous_action_augmentation:
+    clean_probability: 0.5
+    sigmas: [0.05, 0.1]
+    max_abs_noise: 0.25
+    max_resamples: 16
+  token_cache: null
+train:
+  output_dir: outputs/train/libero/actioncodec2_second_order

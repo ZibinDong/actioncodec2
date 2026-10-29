@@ -1,0 +1,43 @@
+# Quickstart: FAST on the public lerobot/libero dataset (10 Hz, ten-step chunks).
+# Needs only the downloaded snapshot, passed with --data-root; the normalization
+# statistics it uses are committed in configs/stats/libero/. For a dataset of
+# your own, fit statistics with scripts/fit_lerobot_stats.py and override
+# model.proprio_stats / tokenizer.action_stats.
+# The gripper is stored as -1 (open) / +1 (closed).
+model:
+  proprio_stats: ./configs/stats/libero/proprio_stats.json
+  proprio_mode: observed
+  embodiment: libero
+  action_dim: 7
+  action_only_loss: true
+tokenizer:
+  name: fast
+  processor: physical-intelligence/fast
+  revision: ec4d7aa71691cac0b8bed6942be45684db2110f4
+  action_stats: ./configs/stats/libero/action_stats.json
+  # Decode without the grammar mask, as FAST is normally used: a stream that does
+  # not parse becomes a zero action.  Set true to mask illegal ids.
+  constrained_decoding: false
+data:
+  roots: ["."]
+  horizon: 10
+  control_frequency_hz: 10
+  translation_meters_per_unit: 0.05
+  rotation_radians_per_unit: 0.5
+  action_space: delta_eef
+  action_rotation_representation: rotation_vector
+  gripper_range: [-1.0, 1.0]
+  gripper_threshold: 0.0
+  gripper_open_is_high: false
+  video_keys: [observation.images.image, observation.images.image2]
+  sample_order: balanced_replacement
+  token_cache: auto
+train:
+  output_dir: outputs/train/libero/fast_quickstart
+  steps: 15000
+  batch_size: 4
+  gradient_accumulation: 4
+  learning_rate: 0.000025
+  warmup_steps: 500
+  save_every: 5000
+  num_workers: 4

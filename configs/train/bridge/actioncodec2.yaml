@@ -1,0 +1,15 @@
+extends: base.yaml
+tokenizer:
+  name: actioncodec2
+  artifact: ZibinDong/ActionCodec2
+  revision: v0.1.0
+  variant: paper-o1-5mm-4k-2bin-1p2ms
+  variant_fingerprint: 800d30570a3b350517596e3099c1bb79be6bdba0e65db0244fb612f0b055bf3b
+  action_space: delta_eef
+  target_hz: 15
+  rotation_multiplication: left
+  gripper_threshold: 0.9
+train:
+  output_dir: outputs/train/bridge/actioncodec2
+  batch_size: 8
+  gradient_accumulation: 1

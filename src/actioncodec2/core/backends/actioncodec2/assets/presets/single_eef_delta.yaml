@@ -1,0 +1,14 @@
+name: single_eef_delta
+input_dim: 7
+input: delta
+source_hz: 15.0
+target_hz: 15.0
+interpolation: cubic
+token_order: time_major
+components:
+  arm:
+    space: eef
+    position_dims: [0, 1, 2]
+    rotation_dims: [3, 4, 5]
+    rotation_format: rotation_vector
+    gripper_dim: 6

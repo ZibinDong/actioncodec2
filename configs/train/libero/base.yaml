@@ -1,0 +1,43 @@
+# G0.5 on the four LIBERO LeRobot suites.  Every LIBERO tokenizer recipe extends this.
+model:
+  proprio_stats: ./configs/stats/libero/proprio_stats.json
+  proprio_mode: observed
+  embodiment: libero
+  proprio_source_indices: [0, 1, 2, 3, 4, 5, 6]
+  proprio_quantile_indices: [6]
+  action_dim: 7
+  action_only_loss: true
+data:
+  roots:
+    - libero_10_no_noops_lerobot
+    - libero_goal_no_noops_lerobot
+    - libero_object_no_noops_lerobot
+    - libero_spatial_no_noops_lerobot
+  horizon: 20
+  control_frequency_hz: 20
+  translation_meters_per_unit: 0.05  # LIBERO stores normalized commands: 1 unit = 5 cm, 0.5 rad
+  rotation_radians_per_unit: 0.5
+  action_space: delta_eef
+  action_rotation_representation: rotation_vector
+  gripper_threshold: 0.5
+  gripper_open_is_high: true  # the four suites store 1 = open
+  video_keys: [observation.images.image, observation.images.wrist_image]
+  lanes: 16
+  sample_order: balanced_replacement
+  # Share of samples per root, in the order of ``roots`` above: the roots' natural
+  # shares of timesteps, with episodes inside a root drawn uniformly.
+  root_weights: [0.395, 0.182, 0.239, 0.183]
+  token_cache: auto
+train:
+  output_dir: outputs/train/libero
+  steps: 15000
+  # Fixed so ``--steps`` can stop a run early on the same 15k LR schedule.
+  schedule_steps: 15000
+  batch_size: 4
+  gradient_accumulation: 4
+  learning_rate: 0.000025
+  warmup_steps: 500
+  save_every: 5000
+  num_workers: 4
+tracking:
+  backend: none

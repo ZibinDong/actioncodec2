@@ -1,0 +1,20 @@
+name: dual_eef_abs
+input_dim: 14
+input: absolute
+source_hz: 15.0
+target_hz: 15.0
+interpolation: cubic
+token_order: time_major
+components:
+  left_arm:
+    space: eef
+    position_dims: [0, 1, 2]
+    rotation_dims: [3, 4, 5]
+    rotation_format: rotation_vector
+    gripper_dim: 6
+  right_arm:
+    space: eef
+    position_dims: [7, 8, 9]
+    rotation_dims: [10, 11, 12]
+    rotation_format: rotation_vector
+    gripper_dim: 13

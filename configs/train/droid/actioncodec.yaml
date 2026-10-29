@@ -1,0 +1,18 @@
+extends: base.yaml
+# The released ActionCodec DROID embodiment is 7D end-effector, not 8D joint.
+model:
+  action_dim: 7
+tokenizer:
+  name: actioncodec
+  artifact: ZibinDong/ActionCodec-5e
+  revision: 86bb847edfc9a2a730fa388c32bf05221a8a5593
+  embodiment_id: 2
+  action_clip:
+    low: [-0.0168634169, -0.0251795389, -0.0219809413, -0.0537351867, -0.0558765745, -0.0570558460, 0.0]
+    high: [0.0178560577, 0.0255278703, 0.0242125858, 0.0532804305, 0.0568197332, 0.0574717380, 1.0]
+data:
+  action_keys: [observation.state.cartesian_position, observation.state.gripper_position]
+  action_space: delta_eef
+  action_rotation_representation: rotation_vector
+train:
+  output_dir: outputs/train/droid/actioncodec

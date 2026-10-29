@@ -1,0 +1,9 @@
+extends: actioncodec2.yaml
+tokenizer:
+  variant: paper-o2-5mm-4k-2bin-1p2ms
+  variant_fingerprint: ecd9fc036f81b21be7ea80938a930182db9c3036fb399bd453cb360f8c359e7b
+data:
+  previous_action_source: ground_truth
+  execution_stride: 15
+train:
+  output_dir: outputs/train/droid/actioncodec2_second_order
