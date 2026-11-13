@@ -105,6 +105,22 @@ Use `actioncodec2_second_order.yaml` for second order; Bridge and DROID recipes 
 in `configs/train/bridge/` and `configs/train/droid/`. For multiple GPUs, replace
 `python` with `torchrun --nproc-per-node 8`.
 
+## Citation
+
+If you find this work helpful, you can cite it as:
+
+```bibtex
+@misc{dong2026actioncodec2streamingactiontokenizer,
+      title={ActionCodec2: A Streaming Action Tokenizer}, 
+      author={Zibin Dong and Yicheng Liu and Shiduo Zhang and Tianyuan Yuan and Baijun Ye and Jinqiu Wang and Hang Zhao},
+      year={2026},
+      eprint={2611.15490},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2611.15490}, 
+}
+```
+
 ## License
 
 Code: [Apache 2.0](LICENSE), except the G0.5 adaptation and derived policies, which
